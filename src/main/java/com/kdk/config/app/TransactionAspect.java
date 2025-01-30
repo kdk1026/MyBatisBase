@@ -40,7 +40,8 @@ public class TransactionAspect {
 		"select*",
 		"get*",
 		"find*",
-		"search*"
+		"search*",
+		"fetch*"
 	};
 
 	private static final String[] DEFAULT_REQUIRED_METHOD_RULE_TRANSACTION_ATTRIBUTES = {
