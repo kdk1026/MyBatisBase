@@ -8,56 +8,36 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * <pre>
  * -----------------------------------
  * 개정이력
  * -----------------------------------
- * 2024. 6. 8. 김대광	최초작성
+ * 2025. 1. 30. kdk	최초작성
  * </pre>
  *
  *
- * @author 김대광
+ * @author kdk
  */
 @Configuration
-@EnableTransactionManagement
 @MapperScan(basePackages = {"com.kdk.app.**.mapper"}, annotationClass = Mapper.class)
-public class DatabaseConfig {
+public class MyBatisConfig {
 
 	private static final String MYBATIS_CONFIG_LOCATION = "mybatis/configuration.xml";
 	private static final String MYBATIS_MAPPER_LOCATION = "classpath:mybatis/mappers/**/*.xml";
 
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.hikari")
-    HikariConfig hikariConfig() {
-		return new HikariConfig();
-	}
-
-    @Bean(name = "datasource")
-    DataSource dataSource() {
-		return new HikariDataSource(this.hikariConfig());
-	}
+	@Autowired
+	private DataSource dataSource;
 
     @Bean
-    PlatformTransactionManager transactionManager(DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
-	}
-
-    @Bean
-    SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+    SqlSessionFactory sqlSessionFactory() throws Exception {
+    	SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
 		sqlSessionFactory.setConfigLocation(new ClassPathResource(MYBATIS_CONFIG_LOCATION));
 		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MYBATIS_MAPPER_LOCATION));
