@@ -31,7 +31,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 @Aspect
 public class TransactionAspect {
 
-	private static final String AOP_TRANSACTION_EXPRESSION = "execution(* com.infoin.app.**..impl.*Impl.*(..))";
+	private static final String AOP_TRANSACTION_EXPRESSION = "execution(* com.kdk.app.**..impl.*Impl.*(..))";
 
 	@Autowired
 	private TransactionManager transactionManager;
