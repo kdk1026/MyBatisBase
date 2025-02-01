@@ -40,7 +40,9 @@ public class DatasourceConfig {
 
     @Bean
     PlatformTransactionManager transactionManager(DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
+    	DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
+        transactionManager.setDefaultTimeout(30);
+		return transactionManager;
 	}
 
 }
