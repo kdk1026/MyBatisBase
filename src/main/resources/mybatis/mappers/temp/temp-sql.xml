@@ -8,4 +8,15 @@
 		SELECT now()
 	</select>
 
+	<select id="selectCityAll" parameterType="map" resultType="map">
+		/* TempMapper.selectCityAll */
+		SELECT ID
+				, Name
+				, CountryCode
+				, District
+				, Population
+		  FROM city
+		  LIMIT 5
+	</select>
+
 </mapper>

@@ -25,7 +25,7 @@ public class TempTest {
 
 	@Test
 	public void test() {
-		System.out.println( tempService.selectNow() );
+		System.out.println( tempService.selectCityAll() );
 	}
 
 }

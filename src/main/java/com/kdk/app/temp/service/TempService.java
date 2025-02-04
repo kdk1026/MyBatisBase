@@ -1,6 +1,9 @@
 package com.kdk.app.temp.service;
 
- /**
+import java.util.List;
+import java.util.Map;
+
+/**
  * <pre>
  * -----------------------------------
  * 개정이력
@@ -14,5 +17,7 @@ package com.kdk.app.temp.service;
 public interface TempService {
 
 	public String selectNow();
+
+	public List<Map<String, Object>> selectCityAll();
 
 }
