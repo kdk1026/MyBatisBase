@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class TransactionConfig {
 
     @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+    PlatformTransactionManager transactionManager(DataSource dataSource) {
     	DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
         transactionManager.setDefaultTimeout(30);
 		return transactionManager;
