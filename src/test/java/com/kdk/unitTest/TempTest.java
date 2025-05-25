@@ -18,13 +18,13 @@ import com.kdk.app.temp.service.TempService;
  * @author 김대광
  */
 @SpringBootTest
-public class TempTest {
+class TempTest {
 
 	@Autowired
 	private TempService tempService;
 
 	@Test
-	public void test() {
+	void test() {
 		System.out.println( tempService.selectCityAll() );
 	}
 

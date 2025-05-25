@@ -3,7 +3,6 @@ package com.kdk.app.temp.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kdk.app.temp.mapper.TempMapper;
@@ -23,8 +22,11 @@ import com.kdk.app.temp.service.TempService;
 @Service
 public class TempServiceImpl implements TempService {
 
-	@Autowired
-	private TempMapper tempMapper;
+	private final TempMapper tempMapper;
+
+	public TempServiceImpl(TempMapper tempMapper) {
+		this.tempMapper = tempMapper;
+	}
 
 	@Override
 	public String selectNow() {

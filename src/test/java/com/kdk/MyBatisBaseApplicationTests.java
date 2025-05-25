@@ -8,6 +8,7 @@ class MyBatisBaseApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// 기본 생성
 	}
 
 }
